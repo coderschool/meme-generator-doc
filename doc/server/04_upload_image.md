@@ -78,7 +78,7 @@ In this step we allow user to upload an image to the server. The server will sav
 ### Evaluation
 
 - Open Postman, create a new POST Request to `{{url}}/api/memes` called `Create meme`. In the `body` tab, choose `form-data`, put `image` as type `file` AS `KEY`, and select a file as VALUE. Click `Send`.
-  ![](../images/400_pm_create_meme.png)
+  ![](./images/400_pm_create_meme.png)
 
 - You should see the `ok` response and find the image in `public/images`. In the server console log, you should see the file object in `req` like this:
   ```

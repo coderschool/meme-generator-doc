@@ -7,15 +7,15 @@
 - Open tab `Variables` -> Variable: url, Initial Value: `http://localhost:5000`
 - Click `Create`
 
-![](../images/300_create_collection.png)
+![](./images/300_create_collection.png)
 
 **Create a new request**
 
 - Hover the mouse on `Meme Generator` on the side menu, click `...` (View more actions)
 - Click `Add Request` -> Name: "Get all memes" -> Save
-  ![](../images/301_create_request.png)
+  ![](./images/301_create_request.png)
 - Click on the new Request -> `{{url}}/api/memes` -> Send -> Save
-  ![](../images/302_get_memes.png)
+  ![](./images/302_get_memes.png)
 - Create another GET Request to test Not Found:
   - Name: Get Not Found URL
   - URL: `{{url}}/not_found`
@@ -32,13 +32,13 @@
     pm.response.to.have.status(404);
   });
   ```
-  ![](../images/303_test_1.png)
+  ![](./images/303_test_1.png)
 - Remember to save the requests
 
 ### Evaluation
 
 - Hover the mouse on `Meme Generator` on the side menu, click the "Arrow" icon -> Click `Run` -> Click `Run Meme Generator`
 - You should see that we pass all the `Status test`
-  ![](../images/304_test_2.png)
+  ![](./images/304_test_2.png)
 
 Good job! [Back to instructions](/README.md)

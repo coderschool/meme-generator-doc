@@ -49,6 +49,6 @@ This feature allows user to create meme based on original images that are upload
 ### Evaluation
 
 - Open Postman, create a new GET request to `{{url}}/api/memes/images?page=1&perPage=2` called `Get all original images` (very similar to `Get all memes`). Test the new API.
-  ![](../images/800_get_org_img.png)
+  ![](./images/800_get_org_img.png)
 
 Good job! [Back to instructions](/README.md)

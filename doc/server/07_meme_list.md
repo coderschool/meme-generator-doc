@@ -60,6 +60,6 @@ Now we have a bunch of test memes in the json file. Let's create an API to provi
 
 - Open Postman request `Get all memes`, play around with `page` and `pageNum` and check the result.
 
-  ![](../images/700_get_memes.png)
+  ![](./images/700_get_memes.png)
 
 Good job! [Back to instructions](/README.md)

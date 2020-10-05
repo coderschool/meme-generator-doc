@@ -11,24 +11,12 @@ In this feature, we allows user to edit the meme and change the content of the t
       let rawData = fs.readFileSync("memes.json");
       let memes = JSON.parse(rawData).memes;
       const index = memes.findIndex((meme) => meme.id === memeId);
-      if (index === -1) {
-        return utilsHelper.sendResponse(
-          res,
-          400,
-          false,
-          null,
-          new Error("Meme not found"),
-          null
-        );
-      }
+      
+      if (index === -1) return next(new Error("Meme not found"));
+
       const meme = memes[index];
       let {texts} = req.body;
-      if (texts) {
-        if (!Array.isArray(texts)) texts = [texts];
-        meme.texts = texts.map((text) => JSON.parse(text));
-      } else {
-        meme.texts = [];
-      }
+      meme.texts = texts && Array.isArray(texts) ? texts : [];
       meme.updatedAt = Date.now();
 
       // Put text on image
@@ -86,7 +74,7 @@ In this feature, we allows user to edit the meme and change the content of the t
             ]
   }
   ```
-  ![](../images/900_pm_update_meme.png)
+  ![](./images/900_pm_update_meme.png)
   - Test without `texts`
   - Test with wrong meme ID
 

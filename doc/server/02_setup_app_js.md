@@ -107,8 +107,8 @@
 ### Evaluation
 
 - Open your browser and test `http://localhost:5000/api/memes`:
-  ![](../images/200_get_memes.png)
+  ![](./images/200_get_memes.png)
 - And test `localhost:5000\whatever`:
-  ![](../images/201_404_error.png)
+  ![](./images/201_404_error.png)
 
 Good job! [Back to instructions](/README.md)

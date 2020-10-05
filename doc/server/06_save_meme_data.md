@@ -139,10 +139,10 @@ router.post(
   ```
   {"size":32,"color":"WHITE","alignmentX":"HORIZONTAL_ALIGN_CENTER","alignmentY":"VERTICAL_ALIGN_BOTTOM","content":"This is an example"}
   ```
-  ![](../images/600_create_meme.png)
+  ![](./images/600_create_meme.png)
 
 - You should find the file `memes.json` is updated with the data of the new meme. You should also find a new image in `public/images/` that has a file name start with `MEME`, e.g. `MEME_A6C7D8B465F4E74.jpg`:
-  ![](../images/601_meme_example.jpg)
+  ![](./images/601_meme_example.jpg)
 
 - Create POST request `Create meme without image`, expect response 500 "Image required"
 - Create POST request `Create meme without texts`, expect response 200
