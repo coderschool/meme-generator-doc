@@ -136,7 +136,7 @@
 
     return (
       <Container className="p-2">
-        <Row className="fill d-flex justify-content-center align-items-center">
+        <Row className="d-flex justify-content-center align-items-center">
           {loading ? (
             <ClipLoader color="#f86c6b" size={150} loading={loading} />
           ) : (
