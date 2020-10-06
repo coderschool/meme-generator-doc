@@ -2,7 +2,7 @@
 
 In this feature, we allows user to edit the meme and change the content of the texts on it. So we will create a new API that handles PUT request to `api/memes/:id`. The idea is simple, we will take the original image and put the new texts on it. Basically we'll overwrite the old meme.
 
-- In `memeController.js`, add:
+- In `meme.controller.js`, add:
   ```javascript
   memeController.updateMeme = async (req, res, next) => {
     try {

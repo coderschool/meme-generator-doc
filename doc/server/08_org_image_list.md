@@ -2,7 +2,7 @@
 
 This feature allows user to create meme based on original images that are uploaded by the other users. 
 
-- In `memeController.js`, add:
+- In `meme.controller.js`, add:
   ```javascript
   memeController.getOriginalImages = (req, res, next) => {
     try {

@@ -25,7 +25,7 @@ Now we have a bunch of test memes in the json file. Let's create an API to provi
 
 - In Postman, change `Get all memes` URL to `{{url}}/api/memes?page=2&perPage=20`. Send it and check the server log, we expect to see page and perPage.
 
-- Now let's write some code to return the according memes given `page` and `pageNum`. In `memeController.js`, add:
+- Now let's write some code to return the according memes given `page` and `pageNum`. In `meme.controller.js`, add:
   ```javascript
   memeController.getMemes = (req, res, next) => {
     try {
