@@ -79,15 +79,19 @@
 
   const MemeList = ({ memes, showDetail }) => {
     return (
-      <CardColumns>
-        {memes?.length > 0 && (
-          <ul className="list-unstyled">
-            {memes.map((meme) => (
-              <MemeCard meme={meme} showDetail={showDetail} key={meme.id} />
-            ))}
-          </ul>
+      <>
+        {memes?.length > 0 ? (
+          <CardColumns>
+            <ul className="list-unstyled">
+              {memes.map((meme) => (
+                <MemeCard meme={meme} showDetail={showDetail} key={meme.id} />
+              ))}
+            </ul>
+          </CardColumns>
+        ) : (
+          <p className="text-center">There are no memes</p>
         )}
-      </CardColumns>
+      </>
     );
   };
 
@@ -136,17 +140,17 @@
 
     return (
       <Container className="p-2">
+        <PaginationBar
+          pageNum={pageNum}
+          setPageNum={setPageNum}
+          totalPageNum={totalPageNum}
+          loading={loading}
+        />
         <Row className="d-flex justify-content-center align-items-center">
           {loading ? (
             <ClipLoader color="#f86c6b" size={150} loading={loading} />
           ) : (
             <>
-              <PaginationBar
-                pageNum={pageNum}
-                setPageNum={setPageNum}
-                totalPageNum={totalPageNum}
-                loading={loading}
-              />
               <MemeList memes={memes} showDetail={showDetail} />
             </>
           )}

@@ -16,6 +16,7 @@ In this part, we will capture the uploaded image by the user, show it on the scr
 
   - In `meme.actions.js`:
   ```javascript
+  import { toast } from "react-toastify";
   //...
   const createMemeRequest = (image) => async (dispatch) => {
     dispatch({ type: types.CREATE_MEME_REQUEST, payload: null });
@@ -27,6 +28,7 @@ In this part, we will capture the uploaded image by the user, show it on the scr
         type: types.CREATE_MEME_SUCCESS,
         payload: res.data.data,
       });
+      toast.success("You can put your idea on the meme now!");
     } catch (error) {
       console.log(error)
       dispatch({ type: types.CREATE_MEME_FAILURE, payload: error });

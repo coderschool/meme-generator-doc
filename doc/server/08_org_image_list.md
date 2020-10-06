@@ -40,7 +40,7 @@ This feature allows user to create meme based on original images that are upload
   ```javascript
   /**
    * @route GET api/memes/images
-   * @description Get all memes
+   * @description Get list of original images
    * @access Public
    */
   router.get("/images", memeController.getOriginalImages);
