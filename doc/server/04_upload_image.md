@@ -2,74 +2,36 @@
 
 In this step we allow user to upload an image to the server. The server will save the image in the folder `public/images/.
 
-- Create `/helpers/upload.helper.js`. This is a function that returns the `multer` middleware to save the image. The function takes in a folder path, create the folder if it's not exists, and use it as the storage.
+- Create `/helpers/upload.helper.js`. This file will handle all things related to file upload, starting with the middleware to take a file from the user, and save it in our `public/images` folder. We need this file to make sure we keep the original filename, and to ensure (with reasonable confidence) that our filename will be unique, so we don't accidentally overwrite an old file. 
+
   ```javascript
-  const fileUploadHelper = (filePath) => {
   const multer = require("multer");
-  const path = require("path");
-  const mkdirp = require("mkdirp");
 
   const storage = multer.diskStorage({
-    destination: async (req, file, cb) => {
-      const uploadPath = path.resolve(filePath);
-      try {
-        const folderStat = await ensureFolderExists(uploadPath);
-        if (folderStat) {
-          cb(null, uploadPath);
-        } else {
-          cb(null, "");
-        }
-      } catch (err) {
-        cb(err);
-      }
-    },
+    destination: "public/images",
     filename: function (req, file, cb) {
-      const uniquePrefix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-      cb(null, uniquePrefix + "-" + file.originalname);
-      },
-    });
-    const ensureFolderExists = (path) => {
-      return new Promise((resolve, reject) => {
-        mkdirp(path, (err) => {
-          if (err) {
-            reject(err); // something else went wrong
-          } else {
-            resolve(true); // successfully created folder
-          }
-        });
-      });
-    };
-    return {
-      uploader: multer({
-        storage: storage,
-        fileFilter: (req, file, cb) => {
-          if (
-            !file.mimetype.includes("jpeg") &&
-            !file.mimetype.includes("jpg") &&
-            !file.mimetype.includes("png")
-          ) {
-            return cb(null, false, new Error("Only images are allowed"));
-          }
-          cb(null, true);
-        },
-      }),
-    };
+      cb(null, Date.now() + "-" + file.originalname);
+    },
+  });
+
+  module.exports = {
+    upload: multer({
+      storage,
+    }),
   };
-  module.exports = fileUploadHelper;
   ```
 
 - In `meme.api.js`:
   ```javascript
   //...
-  const fileUpload = require("../helpers/upload.helper")("public/images/");
-  const uploader = fileUpload.uploader;
+  const upload = require("../helpers/upload.helper").upload;
   //...
   /**
   * @route POST api/memes
   * @description Create a new meme
   * @access Public
   */
-  router.post("/", uploader.single("image"), (req, res, next) => {
+  router.post("/", upload.single("image"), (req, res, next) => {
     console.log(req.file);
     res.send({ status: "ok" });
   });
@@ -77,7 +39,7 @@ In this step we allow user to upload an image to the server. The server will sav
 
 ### Evaluation
 
-- Open Postman, create a new POST Request to `{{url}}/api/memes` called `Create meme`. In the `body` tab, choose `form-data`, put `image` as type `file` AS `KEY`, and select a file as VALUE. Click `Send`.
+- Open Postman, create a new POST Request to `{{url}}/api/memes` called `Create meme`. In the `body` tab, choose `form-data`. Now add a new field, with the key as `image` (this has to be the same as whatever is quoted in `upload.single("image")`. Choose the type as file (hover over the field, and you'll see a dropdown allowing you to choose either text or file), and select a file. Click `Send`.
   ![](./images/400_pm_create_meme.png)
 
 - You should see the `ok` response and find the image in `public/images`. In the server console log, you should see the file object in `req` like this:
