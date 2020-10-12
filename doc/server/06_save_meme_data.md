@@ -68,27 +68,28 @@ In this simple app, we use a `json` file to store the info of memes. This should
 
   const memeController = {};
 
+
   memeController.createMeme = async (req, res, next) => {
     try {
       // Read data from the json file
       let rawData = fs.readFileSync("memes.json");
       let memes = JSON.parse(rawData).memes;
-      let { texts } = req.body;
+
       const meme = {};
+
+      const texts = req.body.texts || []; 
+      const textsArr = [].concat(texts); // Make sure texts is an array.
+      meme.texts = textsArr.map((text) => JSON.parse(text));
 
       // Prepare data for the new meme
       meme.id = utilsHelper.generateRandomHexString(15);
       meme.originalImage = req.file.filename;
       meme.originalImagePath = req.file.path;
-      meme.outputMemePath = `${req.file.destination}/MEME_${
-        meme.id
-      }.${meme.originalImage.split(".").pop()}`;
-      if (texts) {
-        if (!Array.isArray(texts)) texts = [texts];
-        meme.texts = texts.map((text) => JSON.parse(text));
-      } else {
-        meme.texts = [];
-      }
+      const newFilename = `MEME_${meme.id}`;
+      const newDirectory = req.file.destination;
+      const newFilenameExtension = meme.originalImage.split(".").slice(-1);
+      meme.outputMemePath = `${newDirectory}/${newFilename}.${newFilenameExtension}`
+
 
       // Put text on image
       await photoHelper.putTextOnImage(
@@ -96,7 +97,7 @@ In this simple app, we use a `json` file to store the info of memes. This should
         meme.outputMemePath,
         meme.texts
       );
-      
+
       // Add the new meme to the beginning of the list and save to the json file
       meme.createdAt = Date.now();
       meme.updatedAt = Date.now();
@@ -116,7 +117,8 @@ In this simple app, we use a `json` file to store the info of memes. This should
     }
   };
 
-  module.exports = memeController;
+
+    module.exports = memeController;
   ```
 
 - Then put the function `createMeme()` in `meme.api.js` to handle the POST request:
