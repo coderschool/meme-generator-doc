@@ -1,3 +1,5 @@
+# Note - newer version up at codelabs
+
 # Meme Generator App
 
 Meme Generator is a simple website to create memes. 
