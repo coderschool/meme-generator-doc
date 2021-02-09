@@ -169,4 +169,4 @@ In this app we will have only one store for meme.
 
   ![](./images/200_redux_cfg.png)
 
-Good job! [Back to instructions](/README.md)
+Good job! [Back to instructions](/client.md)
