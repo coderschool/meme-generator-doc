@@ -169,4 +169,4 @@
 - You should also find the data of memes in redux store:
   ![](./images/401_meme_list_2.png)
 
-Good job! [Back to instructions](/README.md)
+Good job! [Back to instructions](/client.md)
