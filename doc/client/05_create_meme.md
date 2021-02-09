@@ -262,4 +262,4 @@ In this part, we will capture the uploaded image by the user, show it on the scr
   ![](./images/502_upload_meme.png)
 - You may also notice that the selected image is resize too.
 
-Good job! [Back to instructions](/README.md)
+Good job! [Back to instructions](/client.md)
