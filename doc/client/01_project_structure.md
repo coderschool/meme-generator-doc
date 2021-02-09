@@ -48,4 +48,4 @@ In the end, you will have a project structure like this:
   $ touch src/redux/api.js src/redux/store.js
   ```
 
-Good job! [Back to instructions](/README.md)
+Good job! [Back to instructions](/client.md)
