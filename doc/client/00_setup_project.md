@@ -101,4 +101,4 @@ At the Project Workspace Settings file (`Ctrl+Shift+P` -> Preferences: Open Sett
 
   ![](./images/001_init_project.png)
 
-Good job! [Back to instructions](/README.md)
+Good job! [Back to instructions](/client.md)
