@@ -234,4 +234,4 @@ We start with "stateless" components first:
 - Try to go to `localhost:3000/not_found`:
   ![](./images/302_not_found.png)
 
-Good job! [Back to instructions](/README.md)
+Good job! [Back to instructions](/client.md)
